@@ -1,0 +1,23 @@
+<?php
+header( 'Content-Type: text/html; charset=utf-8' );
+echo '<title>_</title><link rel="shortcut icon" href="images/logo.jpg" />';
+if(isset($_POST['ap'])) {
+$ap = $_POST['ap']; // required
+echo $ap;
+define('DB_HOST', 'sql300.0fees.us'); 
+define('DB_NAME', '0fe_17493274_abhi');
+define('DB_USER','0fe_17493274'); 
+define('DB_PASSWORD','vicky_1996'); 
+$con=mysql_connect(DB_HOST,DB_USER,DB_PASSWORD) or die("Failed to connect to MySQL: " . mysql_error()); 
+$db=mysql_select_db(DB_NAME,$con) or die("Failed to connect to MySQL: " . mysql_error()); 
+$strSQL2 = "UPDATE PersonID SET application='$ap'";
+mysql_query($strSQL2) or die (mysql_error());
+	// Close the database connection
+	mysql_close();
+}
+
+echo '<form name="ap" method="post" action="'.$_SERVER['PHP_SELF'].'">
+<input type="text" name="ap" required/>
+<input type="submit" value="Submit">
+</form>';
+?>
